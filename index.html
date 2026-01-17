@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartScale.Tech | Web Design Services</title>
+    <!-- Added Google Fonts for Robust Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Added FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="https://z-cdn-media.chatglm.cn/files/3460c7ea-f2df-4866-bf43-69c90510c66e.png?auth_key=1868644334-832985e43f7443978fd0ccf105a34aab-0-fecb2540f7f96c3a128414bfd38e5547" type="image/png">
+    
+    <style>
+        /* --- CSS STYLES --- */
+
+        /* --- PRELOADER STYLES --- */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader img {
+            width: 80px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .preloader h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Class to hide the loader */
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- HEADER BRAND UPGRADE --- */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none; /* Removes underline from link */
+        }
+
+        .logo-img {
+            height: 45px; /* Adjust size */
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800; /* Extra Bold */
+            color: var(--dark-bg);
+            letter-spacing: -0.5px;
+            
+            /* Make the text match your brand gradient */
+            background: -webkit-linear-gradient(var(--primary-color), var(--accent));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Make sure the text is readable on mobile */
+        @media (max-width: 768px) {
+            .logo-text { font-size: 1.2rem; }
+            .logo-img { height: 35px; }
+        }
+        
+        :root {
+            --primary-color: #6C63FF; /* Purple/Blue mix */
+            --secondary-color: #4facfe; /* Bright Blue */
+            --dark-bg: #1a1a2e;
+            --light-bg: #f4f7f6;
+            --text-dark: #333;
+            --text-light: #fff;
+            --accent: #2575fc;
+            --gray: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif; /* Modern Font */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent));
+            color: var(--text-light);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.6);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-bg);
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px; 
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-bg);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(135deg, #1e1e2f 0%, #2d2b55 100%);
+            color: var(--text-light);
+            padding: 120px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-color);
+            filter: blur(100px);
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            color: #d1d1d1;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* --- SERVICES --- */
+        .services {
+            padding: 100px 0;
+            background: #fff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--light-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: #fff;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--gray);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: -webkit-linear-gradient(var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            color: var(--dark-bg);
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* --- PRICING (New Section) --- */
+        .pricing {
+            padding: 100px 0;
+            background: var(--dark-bg);
+            color: #fff;
+        }
+
+        .pricing .section-title {
+            color: #fff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            align-items: center; /* Align cards to center vertically */
+        }
+
+        .pricing-card {
+            background: #fff;
+            color: var(--text-dark);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Highlight the most popular */
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
+            z-index: 2;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: #fff;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .features-list li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .features-list li i {
+            color: #2ecc71;
+            margin-right: 10px;
+        }
+
+        /* --- PORTFOLIO --- */
+        .portfolio {
+            padding: 100px 0;
+            background: var(--light-bg);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #fff;
+            padding: 30px 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* --- CONTACT --- */
+        .contact {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 80px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-btn {
+            background: #fff;
+            color: var(--primary-color);
+            padding: 15px 45px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        
+        .contact-btn:hover {
+            background: #f0f0f0;
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #111;
+            color: #777;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .social-links {
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .pricing-card.featured { transform: scale(1); }
+            .pricing-card.featured:hover { transform: translateY(-10px); }
+            .hero-buttons { flex-direction: column; padding: 0 40px; }
+            .btn { width: 100%; text-align: center; }
+        }
+
+        /* --- ANIMATION --- */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer logo */
+        .logo-square {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;      /* Ensures square cropping */
+            border-radius: 12px;    /* Adjust for more/less curve */
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <img src="https://z-cdn-media.chatglm.cn/files/3460c7ea-f2df-4866-bf43-69c90510c66e.png?auth_key=1868644334-832985e43f7443978fd0ccf105a34aab-0-fecb2540f7f96c3a128414bfd38e5547" alt="Logo">
+        <h2>SmartScale.Tech</h2>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <!-- Updated Logo Container with Link -->
+                <a href="#" class="logo-container">
+                    <!-- Your Image Logo -->
+                    <img src="https://z-cdn-media.chatglm.cn/files/3460c7ea-f2df-4866-bf43-69c90510c66e.png?auth_key=1868644334-832985e43f7443978fd0ccf105a34aab-0-fecb2540f7f96c3a128414bfd38e5547" alt="SmartScale Logo" class="logo-img">
+                    
+                    <!-- Your Text Name -->
+                    <span class="logo-text">SmartScale.Tech</span>
+                </a>
+
+                <div class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#portfolio">Work</a>
+                    <a href="#contact" class="btn btn-primary" style="padding: 8px 20px; color: white;">Contact Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container fade-in-up">
+            <h1>Digital Excellence for<br>Your Business</h1>
+            <p>We build robust, scalable, and high-performance websites tailored to your specific needs. From portfolios to hospital management systems.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn-primary">View Pricing</a>
+                <a href="#portfolio" class="btn btn-outline">Our Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Expertise</h2>
+            <p class="section-subtitle">Specialized solutions for every industry.</p>
+            
+            <div class="services-grid">
+                <!-- Personal Portfolio -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-user-astronaut"></i></div>
+                    <h3>Personal Portfolio</h3>
+                    <p>Showcase your skills, resume, and projects with a modern, SEO-optimized personal brand website.</p>
+                </div>
+
+                <!-- Business Website -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Business Website</h3>
+                    <p>Professional corporate sites designed to generate leads, feature products, and build trust with clients.</p>
+                </div>
+
+                <!-- School Website -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>School/Education</h3>
+                    <p>Complete school portals with features for admission forms, news updates, and gallery showcases.</p>
+                </div>
+
+                <!-- Hospital Website -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-hospital-alt"></i></div>
+                    <h3>Hospital/Clinic</h3>
+                    <p>Trusted healthcare platforms featuring doctor profiles, appointment booking, and patient information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Process Section -->
+    <section style="padding: 80px 0; background: var(--light-bg);">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">A simple 3-step journey to your new website.</p>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-around; text-align: center; gap: 30px;">
+                
+                <div style="flex: 1; min-width: 250px;">
+                    <div style="width: 60px; height: 60px; background: var(--primary-color); color: white; border-radius: 50%; line-height: 60px; font-size: 1.5rem; margin: 0 auto 15px;">1</div>
+                    <h3>Consultation</h3>
+                    <p style="color: #666; font-size: 0.9rem;">We discuss your requirements, content, and design preferences.</p>
+                </div>
+
+                <div style="flex: 1; min-width: 250px;">
+                    <div style="width: 60px; height: 60px; background: var(--secondary-color); color: white; border-radius: 50%; line-height: 60px; font-size: 1.5rem; margin: 0 auto 15px;">2</div>
+                    <h3>Design & Build</h3>
+                    <p style="color: #666; font-size: 0.9rem;">We develop your site on a staging server for you to review.</p>
+                </div>
+
+                <div style="flex: 1; min-width: 250px;">
+                    <div style="width: 60px; height: 60px; background: #2ecc71; color: white; border-radius: 50%; line-height: 60px; font-size: 1.5rem; margin: 0 auto 15px;">3</div>
+                    <h3>Launch</h3>
+                    <p style="color: #666; font-size: 0.9rem;">After approval, we make your website live for the world to see.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+        <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Transparent Pricing</h2>
+            <p class="section-subtitle" style="color: #aaa;">Professional plans that fit your budget.</p>
+            
+            <div class="pricing-grid">
+                
+                <!-- Plan 1: Portfolio -->
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <!-- Corrected Cost: $49 -->
+                    <div class="price">$49<span>/project</span></div>
+                    <p style="color:#666; font-size: 0.9rem;">Perfect for Personal Portfolios</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> 5 Page Website</li>
+                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                        <li><i class="fas fa-check"></i> Contact Form</li>
+                        <li><i class="fas fa-check"></i> 1 Month Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="background: var(--dark-bg); width: 100%;">Choose Plan</a>
+                </div>
+
+                <!-- Plan 2: Business (Highlighted) -->
+                <div class="pricing-card featured">
+                    <div class="badge">Most Popular</div>
+                    <h3>Growth</h3>
+                    <!-- Corrected Cost: $99 -->
+                    <div class="price">$99<span>/project</span></div>
+                    <p style="color:#666; font-size: 0.9rem;">For Small Businesses</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Up to 10 Pages</li>
+                        <li><i class="fas fa-check"></i> SEO Optimization</li>
+                        <li><i class="fas fa-check"></i> Social Media Integration</li>
+                        <li><i class="fas fa-check"></i> 2 Months Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Choose Plan</a>
+                </div>
+
+                <!-- Plan 3: Enterprise -->
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <!-- Corrected Cost: $229 -->
+                    <div class="price">$229<span>/project</span></div>
+                    <p style="color:#666; font-size: 0.9rem;">Schools & Hospitals</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> CMS Integration (WordPress)</li>
+                        <li><i class="fas fa-check"></i> Online Booking/Admission Forms</li>
+                        <li><i class="fas fa-check"></i> Dynamic Database Setup</li>
+                        <li><i class="fas fa-check"></i> 3 Months Basic Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="background: var(--dark-bg); width: 100%;">Choose Plan</a>
+                    <p style="font-size: 0.75rem; color: #888; margin-top: 10px; text-align: center;">
+                        *Includes Web Forms. Custom Software/Student Portal not included.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+
+        <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Portfolio</h2>
+            <p class="section-subtitle">Delivering quality digital experiences.</p>
+            
+            <div class="portfolio-grid">
+                
+                <!-- PROJECT 1: REAL CLIENT PROJECT -->
+                <div class="portfolio-item">
+                    <!-- TIP: Replace this src with a screenshot of your actual site -->
+                    <img src="Images/image.png" alt="Divya Makeovers Project">
+                    <div class="portfolio-overlay">
+                        <h3>Divya Makeovers</h3>
+                        <p>Hairstyling & Beauty</p>
+                        <!-- Links to your live site -->
+                        <div style="margin-top: 10px;">
+                            <a href="https://divya-makeovers.netlify.app/" target="_blank" style="color: #fff; text-decoration: underline; font-weight: bold;">Visit Live Site <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: SALES FUNNEL (Hospital) -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hospital Project">
+                    <div class="portfolio-overlay">
+                        <h3>City Care Clinic</h3>
+                        <p>Hospital Portal</p>
+                        <div style="margin-top: 10px;">
+                            <a href="#contact" style="color: #fff; text-decoration: underline; font-weight: bold;">Get Similar Site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: SALES FUNNEL (School) -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="School Project">
+                    <div class="portfolio-overlay">
+                        <h3>Bright Future Academy</h3>
+                        <p>Educational Website</p>
+                        <div style="margin-top: 10px;">
+                            <a href="#contact" style="color: #fff; text-decoration: underline; font-weight: bold;">Get Similar Site</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Select a plan above or contact us for a custom quote.</p>
+            <!-- REPLACE 1234567890 WITH YOUR WHATSAPP NUMBER -->
+            <a href="https://wa.me/1234567890" class="btn contact-btn">Chat on WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <img src="https://z-cdn-media.chatglm.cn/files/3460c7ea-f2df-4866-bf43-69c90510c66e.png?auth_key=1868644334-832985e43f7443978fd0ccf105a34aab-0-fecb2540f7f96c3a128414bfd38e5547" alt="SmartScale Logo"class="logo-square"/>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/smartscale.tech/"><i class="fab fa-instagram"></i></a>
+                <!-- <a href="#"><i class="fab fa-linkedin"></i></a> -->
+                <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+            </div>
+            <p>&copy; 2026 SmartScale.Tech. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1000); // 1000ms = 1 second delay
+        });
+    </script>
+
+</body>
+</html>
